@@ -39,7 +39,7 @@
 						<username>fresh-mar-06-23</username>
 						<password>Ussr12309</password>
 						<applicationName>mvn-app1</applicationName>
-						<environment>dev</environment>
+						<environment>Sandbox</environment>
 						<region>us-east-2</region>
 						<workers>1</workers>
 						<workerType>MICRO</workerType>

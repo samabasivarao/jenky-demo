@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="267663d2-fb43-4859-bc4d-f3568f0b9d7b" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="jenky-demoFlow" doc:id="338e07a3-1496-4125-941c-dbbf11fada22" >
+		<http:listener doc:name="Listener" doc:id="53553036-5af9-4b0c-afb8-656f45da793f" config-ref="HTTP_Listener_config" path="/janu"/>
+		<logger level="INFO" doc:name="Logger" doc:id="728abd55-c104-4562-aa30-c184c05144e7" message="#[payload]"/>
+		<set-payload value='#["this is learning process"]' doc:name="Set Payload" doc:id="a000b52b-8f9b-46d6-aaee-df8b65ea44c8" />
+		<ee:transform doc:name="Transform Message" doc:id="4587d00c-b9d2-40de-8cd4-6a1c64dd6682" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[ 
+     {
+	  "FIRSTNAME": "SUBHA" ,
+      "LASTNAME"  : "SREE" ,
+	  "AGE" : 12.4,
+      "PAID" : 190.6746564
+	},
+    {
+	  "FIRSTNAME": "gopi" ,
+      "LASTNAME"  : "marri" ,
+	  "AGE" : 13.4,
+      "PAID" : 120.6746564
+	},
+    {
+	  "FIRSTNAME": "indra" ,
+      "LASTNAME"  : "katta" ,
+	  "AGE" : 99.4,
+      "PAID" : 290.6746564
+	},
+    {
+	  "FIRSTNAME": "SATYA" ,
+      "LASTNAME"  : "JI LUKKY" ,
+	  "AGE" : 99.4,
+      "PAID" : 290.6746564
+	},
+    {
+	  "FIRSTNAME": "SAM" ,
+      "LASTNAME"  : "SIVA" ,
+	  "AGE" : 99.4,
+      "PAID" : 290.6746564
+	}
+   ]]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
